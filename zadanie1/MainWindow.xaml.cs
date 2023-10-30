@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using System;
 using System.Globalization;
 using System.IO;
 using System.Windows;
@@ -72,6 +73,15 @@ namespace zadanie1
             {
                 OutputTextBox.Text = ReplacePolishCharacters(inputText);
             }
+
+            else if (RemoveWordRadio.IsChecked == true)
+            {
+                OutputTextBox.Text = RemoveWord(inputText);
+            }
+
+            else if (MoveRadio.IsChecked == true) {
+                OutputTextBox.Text = ShiftCharacters(inputText);
+            }
         }
         private string ModifyTextToUppercase(string text)
         {
@@ -80,7 +90,6 @@ namespace zadanie1
 
         private string ModifyTextToTitleCase(string text)
         {
-            // Możesz użyć metody TextInfo.ToTitleCase do zamiany na wielkie początkowe litery.
             TextInfo textInfo = new CultureInfo("pl-PL", false).TextInfo;
             return textInfo.ToTitleCase(text.ToLower());
         }
@@ -97,7 +106,66 @@ namespace zadanie1
             }
             return text;
         }
-    
+
+        private string ShiftCharacters(string text)
+        {
+            var window2 = new DialogBox2()
+            {
+                Title = "Dialog Box",
+                Topmost = true,
+                ResizeMode = ResizeMode.NoResize,
+                ShowInTaskbar = false,
+                Owner = this
+            };
+            window2.ShowDialog();
+            int shiftAmount;
+            var zero = 0;
+            bool success = int.TryParse(window2.NumberInput.Text, out zero);
+            if (success)
+            {
+                shiftAmount = int.Parse(window2.NumberInput.Text);
+            }
+            else
+            {
+                return text;
+            }
+
+            char[] inputCharacters = text.ToCharArray();
+
+            for (int i = 0; i < inputCharacters.Length; i++)
+            {
+                if (char.IsLetter(inputCharacters[i]))
+                {
+                    char baseChar = char.IsUpper(inputCharacters[i]) ? 'A' : 'a';
+                    inputCharacters[i] = (char)(baseChar + (inputCharacters[i] - baseChar + shiftAmount) % 26);
+                }
+            }
+            
+            return text = new string(inputCharacters);
+        }
+
+        private string RemoveWord(string text) {
+            var window2 = new DialogBox()
+            {
+                Title = "Dialog Box",
+                Topmost = true,
+                ResizeMode = ResizeMode.NoResize,
+                ShowInTaskbar = false,
+                Owner = this
+            };
+            window2.ShowDialog();
+            if (window2.RemoveWordInput.Text.Length != 0) { 
+                var word = window2.RemoveWordInput.Text;
+                text = text.Replace(word, "");
+                return text;
+            }
+            else
+            {
+                return text;
+            }
+
+        }
+
 
 
         private void SearchWord_Click(object sender, RoutedEventArgs e)
@@ -105,39 +173,22 @@ namespace zadanie1
             string searchText = SearchTextBox.Text;
             string inputText = InputTextBox.Text;
             int index = inputText.IndexOf(searchText);
+            int count = CountTextOccurrences(inputText, searchText);
 
             if (index != -1)
             {
-                SearchTextBox.Text = "Pierwsze wystąpienie wyrazu '" + searchText + "' na pozycji " + index;
+                FirstOccurence.Text = "First occurence of '" + searchText + "' on position " + index;
+                NumberOfOccurences.Text = "Number of occurences '" + searchText + "': " + count;
             }
             else
             {
-                SearchTextBox.Text = "Nie znaleziono tekstu.";
+                FirstOccurence.Text = "Nie znaleziono tekstu.";
             }
-        }
 
-        private void CountOccurrences_Click(object sender, RoutedEventArgs e)
-        {
-            string searchText = SearchTextBox.Text;
-            string inputText = InputTextBox.Text;
 
-            int count = CountTextOccurrences(inputText, searchText);
-            OutputTextBox.Text = "Liczba wystąpień wyrazu '" + searchText + "': " + count;
-        }
+            NumberOfOccurences.Text = "Liczba wystąpień wyrazu '" + searchText + "': " + count;
 
-        private void TrimText_Click(object sender, RoutedEventArgs e)
-        {
-            string maxLengthText = SearchTextBox.Text;
-            if (int.TryParse(maxLengthText, out int maxLength))
-            {
-                string inputText = InputTextBox.Text;
-                string trimmedText = TrimTextToMaxLength(inputText, maxLength);
-                OutputTextBox.Text = trimmedText;
-            }
-            else
-            {
-                OutputTextBox.Text = "Podaj prawidłową długość do przycięcia.";
-            }
+
         }
 
         private int CountTextOccurrences(string input, string searchText)
@@ -152,22 +203,10 @@ namespace zadanie1
             return count;
         }
 
-        private string TrimTextToMaxLength(string input, int maxLength)
-        {
-            if (input.Length <= maxLength)
-            {
-                return input;
-            }
-            else
-            {
-                return input.Substring(0, maxLength);
-            }
-        }
-        private void PerformAction_Click(object sender, RoutedEventArgs e)
+        private void OutputTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
 
         }
-
     }
 }
 

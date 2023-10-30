@@ -1,64 +1,88 @@
 ﻿<Window x:Class="zadanie1.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Zadanie1" Height="600" Width="600" Background="#FF414143">
+        Title="Zadanie1" Height="1000" Width="600" Background="#FF414143" MinHeight="1009">
 
-    <Grid Width="600" Height="600" VerticalAlignment="Center" HorizontalAlignment="Center">
-        <Button Content="Choose a file" Width="285" Height="20" Margin="10,10,305,570" Background="#FFF79713" FontFamily="SF UI  Text" Foreground="White" FontSize="14" BorderBrush="{x:Null}" Click="OpenFile_Click">
+    <Grid Width="600" HorizontalAlignment="Center" Height="1000" VerticalAlignment="Center">
+        <Button Content="Choose a file" Height="20" Margin="10,20,10,960" Background="#FFF79713" FontFamily="SF UI  Text" Foreground="White" FontSize="14" BorderBrush="{x:Null}" Click="OpenFile_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"></Setter>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button Content="Upload" Width="285" Height="20" Margin="305,10,10,570" Background="#FFF79713" BorderBrush="{x:Null}" Foreground="White" FontFamily="SF UI Display" FontSize="14" Click="SaveFile_Click">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"></Setter>
-                </Style>
-            </Button.Resources>
-        </Button>
-        <RadioButton Content="From file" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="SF UI  Text" FontSize="14" BorderBrush="#FFF79713" IsChecked="True" Background="#FF414143"/>
-        <RadioButton Content="From prompt" HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="SF UI  Text" FontSize="14" BorderBrush="#FFF79713" Background="#FF414143"/>
-        <TextBox x:Name="InputTextBox" HorizontalAlignment="Center" Height="168" Margin="0,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="580" BorderBrush="#FFF79713" Background="#FF5A5A5D" BorderThickness="3,3,3,3">
+        <RadioButton Content="From file" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="SF UI  Text" FontSize="14" BorderBrush="#FFF79713" IsChecked="True" Background="#FF414143"/>
+        <RadioButton Content="From prompt" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="SF UI  Text" FontSize="14" BorderBrush="#FFF79713" Background="#FF414143"/>
+        <TextBox x:Name="InputTextBox" HorizontalAlignment="Center" Height="168" Margin="0,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="580" BorderBrush="#FFF79713" Background="#FF5A5A5D" BorderThickness="3,3,3,3" Foreground="White" FontSize="14" FontFamily="SF UI  Text">
             <TextBox.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"></Setter>
                 </Style>
             </TextBox.Resources>
         </TextBox>
-        <TextBox x:Name="OutputTextBox" HorizontalAlignment="Center" Height="168" Margin="0,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="580" BorderBrush="#FFF79713" Background="#FF5A5A5D" BorderThickness="3,3,3,3">
+        <TextBox x:Name="OutputTextBox" HorizontalAlignment="Center" Height="168" Margin="0,260,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="580" BorderBrush="#FFF79713" Background="#FF5A5A5D" BorderThickness="3,3,3,3" Foreground="White" FontFamily="SF UI  Text" FontSize="14">
             <TextBox.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"></Setter>
                 </Style>
             </TextBox.Resources>
         </TextBox>
-        <Button Content="Modify text" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14" FontFamily="SF UI  Text" Width="284" BorderBrush="{x:Null}" Foreground="White" Background="#FFF79713" Margin="0,423,0,0" Click="ModifyText_Click">
+        <Button Content="Modify text" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14" FontFamily="SF UI  Text" Width="284" BorderBrush="{x:Null}" Foreground="White" Background="#FFF79713" Margin="0,513,0,0" Click="ModifyText_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"></Setter>
                 </Style>
             </Button.Resources>
         </Button>
-        <RadioButton x:Name="UppercaseRadio" Content="Change to uppercase" HorizontalAlignment="Center" Margin="0,449,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="SF UI  Text" FontSize="14" BorderBrush="#FFF79713" Background="#FF414143"/>
-        <RadioButton x:Name="TitleCaseRadio" Content="Change to capital" HorizontalAlignment="Center" Margin="0,470,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="SF UI  Text" FontSize="14" BorderBrush="#FFF79713" Background="#FF414143"/>
-        <RadioButton x:Name="ReplacePolishRadio" Content="Remove polish characters" HorizontalAlignment="Center" Margin="0,491,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="SF UI  Text" FontSize="14" BorderBrush="#FFF79713" Background="#FF414143"/>
-        <Button Content="Execute" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14" FontFamily="SF UI  Text" Width="284" BorderBrush="{x:Null}" Foreground="White" Background="#FFF79713" Margin="0,512,0,0" Click="PerformAction_Click">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"></Setter>
-                </Style>
-            </Button.Resources>
-        </Button>
-        <TextBox x:Name="SearchTextBox" HorizontalAlignment="Left" Height="50" Margin="10,540,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="460" BorderBrush="#FFF79713" Background="#FF5A5A5D" BorderThickness="3,3,3,3">
+        <RadioButton x:Name="UppercaseRadio" Content="Change to uppercase" HorizontalAlignment="Left" Margin="67,434,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="SF UI  Text" FontSize="14" BorderBrush="#FFF79713" Background="#FF414143"/>
+        <RadioButton x:Name="TitleCaseRadio" Content="Change to capital" HorizontalAlignment="Center" Margin="0,434,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="SF UI  Text" FontSize="14" BorderBrush="#FFF79713" Background="#FF414143"/>
+        <RadioButton x:Name="MoveRadio" Content="Move characters" HorizontalAlignment="Left" Margin="373,434,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="SF UI  Text" FontSize="14" BorderBrush="#FFF79713" Background="#FF414143"/>
+        <RadioButton x:Name="ReplacePolishRadio" Content="Remove polish characters" HorizontalAlignment="Center" Margin="0,455,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="SF UI  Text" FontSize="14" BorderBrush="#FFF79713" Background="#FF414143"/>
+        <RadioButton x:Name="SecondLetterUppercaseRadio" Content="Change to uppercase every second letter" HorizontalAlignment="Center" Margin="0,476,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="SF UI  Text" FontSize="14" BorderBrush="#FFF79713" Background="#FF414143"/>
+        <RadioButton x:Name="RemoveWordRadio" Content="Remove word" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontFamily="SF UI  Text" FontSize="14" BorderBrush="#FFF79713" Background="#FF414143"/>
+        <TextBox x:Name="FirstOccurence" HorizontalAlignment="Left" Height="50" Margin="300,821,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="290" BorderBrush="#FFF79713" Background="#FF5A5A5D" BorderThickness="3,3,3,3" Foreground="White" FontFamily="SF UI  Text" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
             <TextBox.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"></Setter>
                 </Style>
             </TextBox.Resources>
         </TextBox>
-        <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14" FontFamily="SF UI  Text" Width="115" BorderBrush="{x:Null}" Foreground="White" Background="#FFF79713" Margin="475,540,0,0" Height="50" Click="SearchWord_Click">
+        <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14" FontFamily="SF UI  Text" Width="115" BorderBrush="{x:Null}" Foreground="White" Background="#FFF79713" Margin="475,766,0,0" Height="50" Click="SearchWord_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"></Setter>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <TextBox x:Name="SearchTextBox" HorizontalAlignment="Left" Height="50" Margin="10,766,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="460" BorderBrush="#FFF79713" Background="#FF5A5A5D" BorderThickness="3,3,3,3" Foreground="White" VerticalContentAlignment="Center" FontSize="14" FontFamily="SF UI  Text">
+            <TextBox.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"></Setter>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+        <Label Content="First occurence" HorizontalAlignment="Left" Margin="10,821,0,0" VerticalAlignment="Top" Width="285" Height="50" BorderBrush="#FFF79713" Background="#FF5A5A5D" BorderThickness="3,3,3,3" Foreground="White" FontFamily="SF UI  Text" FontSize="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0,5,0,5">
+            <Label.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"></Setter>
+                </Style>
+            </Label.Resources>
+        </Label>
+        <TextBox x:Name="NumberOfOccurences" HorizontalAlignment="Left" Height="50" Margin="300,876,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="290" BorderBrush="#FFF79713" Background="#FF5A5A5D" BorderThickness="3,3,3,3" Foreground="White" FontFamily="SF UI  Text" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <TextBox.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"></Setter>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+        <Label Content="Number of occurences" HorizontalAlignment="Left" Margin="10,876,0,0" VerticalAlignment="Top" Width="285" Height="50" BorderBrush="#FFF79713" Background="#FF5A5A5D" BorderThickness="3,3,3,3" Foreground="White" FontFamily="SF UI  Text" FontSize="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0,5,0,5">
+            <Label.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"></Setter>
+                </Style>
+            </Label.Resources>
+        </Label>
+        <Button Content="Save File" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14" FontFamily="SF UI  Text" Width="580" BorderBrush="{x:Null}" Foreground="White" Background="#FFF79713" Margin="0,931,0,0" Height="50" Click="SaveFile_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"></Setter>
