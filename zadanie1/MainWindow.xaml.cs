@@ -2,6 +2,7 @@
 using System;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Windows;
 namespace zadanie1
 {
@@ -81,6 +82,21 @@ namespace zadanie1
 
             else if (MoveRadio.IsChecked == true) {
                 OutputTextBox.Text = ShiftCharacters(inputText);
+            }
+
+            else if (TrimWordRadio.IsChecked == true)
+            {
+                OutputTextBox.Text = TrimWord(inputText);
+            }
+
+            else if (SecondLetterUppercaseRadio.IsChecked == true) 
+            {
+                OutputTextBox.Text = SecondLetterUppercase(inputText);
+            }
+
+            else if (ChangeOrderRadio.IsChecked == true) 
+            { 
+                OutputTextBox.Text = ChangeOrder(inputText);
             }
         }
         private string ModifyTextToUppercase(string text)
@@ -164,6 +180,61 @@ namespace zadanie1
                 return text;
             }
 
+        }
+
+        private string TrimWord(string text)
+        {
+            var window2 = new DialogBox3()
+            {
+                Title = "Dialog Box",
+                Topmost = true,
+                ResizeMode = ResizeMode.NoResize,
+                ShowInTaskbar = false,
+                Owner = this
+            };
+            window2.ShowDialog();
+            var zero = 0;
+            int trim;
+            bool success = int.TryParse(window2.TrimInput.Text, out zero);
+            if (success)
+            {
+                trim = int.Parse(window2.TrimInput.Text);
+            }
+            else
+            {
+                return text;
+            }
+
+            return text.Substring(0, trim);
+
+        }
+
+        private string SecondLetterUppercase(string text)
+        {
+            char[] ch = text.ToCharArray();
+
+            for ( int i = 0; i < ch.Length; i++ )
+            {
+                if (i % 2 != 0)
+                {
+                    ch[i] = Char.ToUpper(ch[i]);
+                }
+            }
+
+            return text = new string(ch);
+        }
+
+        private string ChangeOrder(string text)
+        {
+            string[] s = text.Split(' ');
+            string ans = "";
+            for (int i = s.Length - 1;
+                     i >= 0; i--)
+            {
+                ans += s[i] + " ";
+            }
+
+            return text = ans.Substring(0, ans.Length - 1);
         }
 
 
